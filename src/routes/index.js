@@ -1,15 +1,14 @@
 const express = require('express');
 const indexRouter =express.Router();
-const { controllerRouter, crudController,customerController,userController }= require('../controllers')
-
-
+const { controllerRouter, crudController,customerController,}= require('../controllers');
+const UserRouter = require('./user/user_router');
 
 indexRouter.get(/^\/$|\/home?(.html)$/,(req,res)=>{
     res.json({message:'index router'})
 });
 indexRouter.use('/role',controllerRouter)
-indexRouter.use('/user',userController)
-indexRouter.use('/crud',crudController )
+indexRouter.use('/users',UserRouter)
+indexRouter.use('/crud',crudController)
 indexRouter.use('/customer',customerController)
 
 

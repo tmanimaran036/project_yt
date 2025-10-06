@@ -1,11 +1,11 @@
-class curd {
-    constructor(model){
-        this.model=model
+class Curd {
+    constructor(repository){
+        this.repository=repository
     }  
     
    async getAll(){
       try{  
-        const response =await this.model.findAll()
+        const response =await this.repository.find()
         return response;
       }
       catch(error){
@@ -14,9 +14,9 @@ class curd {
       }
    }
 
-   async  getOne(data){
+   async  getOne(id){
      try{
-            const response =await this.model.findById({data})
+            const response =await this.repository.findOneBy({id})
             if(!response){
                return '!Not Found'
             }
@@ -31,41 +31,43 @@ class curd {
 
     async create(data){
         try{
-            const response =await this.model.create(data)
+            const newData= this.repository.create(data)
+            const response =await this.repository.save(newData)
             return response;
         }
         catch(error){
             console.log(error)
-             throw new Error(error)
+            throw new Error(error)
         }
     }
 
     async  updated(id,data){
-          try{
-            const response = this.getOne(id);
-            return response.model.save(data)
-        }
+       try {
+            const existing = await this.repository.findOneBy({ id });
+            if (!existing) return 'Not Found';
+            await this.repository.update(id, data);
+            return await this.repository.findOneBy({ id });
+    }
         catch(error){
             console.log(error)
-             throw new Error(error)
+            throw new Error(error)
         }
     }
     
-   async delete(data){
+   async delete(id){
      try{
-            const response =await this.model.findById({data})
+            const response =await this.repository.findOneBy({id})
             if(!response){
                return '!Not Found'
             }
-            return  this.model.delete({data});
+            await this.repository.delete(id);
+            return 'User is Deleted'
         }
         catch(error){
             console.log(error)
-             throw new Error(error)
+            throw new Error(error)
         }
-
    }
 
-
-
 }            
+module.exports= Curd

@@ -1,7 +1,4 @@
 const express = require('express');
-const crudController = require('./curd');
-const customerController = require('./customer');
-const userController = require('./user');
 const controllerRouter =express.Router();
 
 controllerRouter.get(/^\/$|\/home?(.html)$/,(req,res)=>{ 

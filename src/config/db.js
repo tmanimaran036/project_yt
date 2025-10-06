@@ -1,26 +1,16 @@
-const { EntitySchema } = require('typeorm');
+const { DataSource }=require('typeorm')
+require('dotenv').config();
+const { User }=require('../model/ormEntities')
 
-module.exports = new EntitySchema({
-  name:'User',
-  tableName:'users',
-  columns:{
-    id :{
-        primary:true,
-        type:'int',
-        generated:true
-    },
-    name: {
-      type: 'varchar'
-    },
-    email: {
-      type: 'varchar',
-      unique: true
-    },
-    age: {
-      type: 'int'
-    },
-    password:{
-      type:'varchar'
-    }
-  }
-});
+ const AppDataSource = new DataSource({
+    type: 'mysql',
+    host:process.env.DB_HOST,
+    port:process.env.DB_PORT,
+    username:process.env.DB_USER,
+    password:process.env.DB_PASSWORD,
+    database:process.env.DB_NAME,
+    synchronize:true,
+    logging:false,
+    entities:[User]
+})
+ module.exports={ AppDataSource }
