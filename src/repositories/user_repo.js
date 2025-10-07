@@ -9,6 +9,11 @@ class UserRepository extends Curd{
     const user= AppDataSource.getRepository(User);
     super(user)
  }
+ 
+ async findByEmail(email){
+    return this.repository.findOneBy({email})
+ }
+
 }
 
 

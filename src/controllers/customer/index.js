@@ -1,9 +1,15 @@
-const express=require('express')
-const customerController=express.Router();
+const { StatusCodes } = require('http-status-codes')
 
-customerController.use('/',(req,res)=>{
-    console.log(req.url)
-    res.json({message:'hii is customerController'})
-})
+const info =(req,res)=>{
+    console.log(req.originalUrl )
+       res
+        .status(StatusCodes.OK)
+        .json({ 
+          success:true,
+          message:'customer info page api',
+          error:{},
+          data:{}
+      })
+}
 
-module.exports=customerController
+module.exports={ info }

@@ -14,14 +14,26 @@ async  function getAll(){
 }
 
 
-async  function createUser(data){
+async  function createUser( data ){
     try{
-       const user= await userRepository.create(data)   
+       const user= await userRepository.create( data )   
        return user
     }
     catch(error){
        console.error(error)
+   }
+ }
+ async function getByEmail(email){
+    try{
+      const user =await userRepository.findByEmail(email)
+      return user
     }
-}
+    catch(error){
+      console.error(error)
+   }
+ }  
 
-module.exports={ getAll,createUser }
+
+
+
+module.exports={ getAll,createUser,getByEmail }

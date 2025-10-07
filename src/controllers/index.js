@@ -27,7 +27,7 @@ controllerRouter.get('/services',(req,res)=>{
 
 module.exports= {
     controllerRouter,
-    crudController : require('./curd'),
+    
     customerController: require('./customer'),
     userController : require('./user')
 };
