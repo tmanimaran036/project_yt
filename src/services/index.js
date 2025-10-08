@@ -1,5 +1,5 @@
-    const { getAll, createUser,getByEmail } = require("./user_services");
+    const { getAll, createUser,getByEmail, updateUser } = require("./user_services");
 
 module.exports={
-   getAll,createUser,getByEmail
+   getAll,createUser,getByEmail,updateUser
 }

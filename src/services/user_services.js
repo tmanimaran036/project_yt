@@ -23,6 +23,20 @@ async  function createUser( data ){
        console.error(error)
    }
  }
+
+ async  function updateUser(id,data){
+    try{
+       const user= await userRepository.updated( id,data ) 
+       console.log('userServicesResponse:',user)  
+       return user
+    }
+    catch(error){
+       console.error(error)
+   }
+ }
+
+ 
+
  async function getByEmail(email){
     try{
       const user =await userRepository.findByEmail(email)
@@ -32,8 +46,7 @@ async  function createUser( data ){
       console.error(error)
    }
  }  
+   
 
 
-
-
-module.exports={ getAll,createUser,getByEmail }
+module.exports={ getAll,createUser,getByEmail,updateUser}

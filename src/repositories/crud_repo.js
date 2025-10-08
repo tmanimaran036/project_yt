@@ -43,11 +43,11 @@ class Curd {
 
     async  updated(id,data){
        try {
-            const existing = await this.repository.findOneBy({ id });
-            if (!existing) return 'Not Found';
-            await this.repository.update(id, data);
-            return await this.repository.findOneBy({ id });
-    }
+        const existing = await this.repository.findOneBy({ id });
+  
+        if (!existing) return 'Not Found';
+        return await this.repository.update(id,data);
+       }
         catch(error){
             console.log(error)
             throw new Error(error)
