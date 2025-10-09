@@ -8,6 +8,11 @@ const createSchema =joi.object({
   password:joi.string().trim().min(5).required()
 })
 
+const cityCreateSchema=joi.object({
+    city:joi.string().trim().max(255).required()
+})
+
+
 function validation(schema,property){
 
     return( req,res,next)=>{
@@ -40,4 +45,4 @@ function validation(schema,property){
     }
 }
 
-module.exports={ createSchema , validation}
+module.exports={ createSchema ,cityCreateSchema , validation}

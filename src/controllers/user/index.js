@@ -11,17 +11,18 @@ async function info(req, res) {
 
 async function getUsers(req, res) {
   try {
-    if (req.query.email) {
+    // if not set query params and empty email query is also = false
+    if(req.query.email) {
       const users = await getByEmail(req.query.email);
       successResponse.data = users;
       if (!users) {
+       errorResponse.message='some thing went wrong';
         errorResponse.error = "!!! invalid email ";
         return res.status(StatusCodes.NOT_FOUND).json(errorResponse);
       }
 
       return res.status(StatusCodes.OK).json(successResponse);
     }
-
     const users = await getAll();
     successResponse.data = users;
     res.status(StatusCodes.OK).json(successResponse);
@@ -36,7 +37,8 @@ async function createUsers(req, res) {
     const is_active = await getByEmail(req.body.email);
 
     if (is_active) {
-      errorResponse.error = "The Email ID Was Already Existing.";
+       errorResponse.message='some thing went wrong';
+       errorResponse.error = "The Email ID Was Already Existing.";
       return res
       .status(StatusCodes.BAD_REQUEST)
       .json(errorResponse);

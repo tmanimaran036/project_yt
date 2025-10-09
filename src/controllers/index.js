@@ -27,7 +27,8 @@ controllerRouter.get('/services',(req,res)=>{
 
 module.exports= {
     controllerRouter,
-    
+
     customerController: require('./customer'),
-    userController : require('./user')
+    userController : require('./user'),
+    cityController : require('./city/index')
 };

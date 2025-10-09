@@ -1,4 +1,4 @@
-class Curd {
+class Crud {
     constructor(repository){
         this.repository=repository
     }  
@@ -70,4 +70,4 @@ class Curd {
    }
 
 }            
-module.exports= Curd
+module.exports= Crud

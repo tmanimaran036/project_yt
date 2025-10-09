@@ -1,6 +1,8 @@
 const { DataSource }=require('typeorm')
 require('dotenv').config();
-const { User }=require('../model/ormEntities')
+const { User }=require('../model/useEntities')
+const { City }=require('../model/cityEntities')
+
 
  const AppDataSource = new DataSource({
     type: 'mysql',
@@ -11,6 +13,6 @@ const { User }=require('../model/ormEntities')
     database:process.env.DB_NAME,
     synchronize:true,
     logging:false,
-    entities:[User]
+    entities:[User,City]
 })
  module.exports={ AppDataSource }

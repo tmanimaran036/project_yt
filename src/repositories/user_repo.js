@@ -1,10 +1,10 @@
 
-const Curd = require('./crud_repo')
+const Crud = require('./crud_repo')
 const { AppDataSource } =require('../config/db')
-const { User } =require('../model/ormEntities')
+const { User } =require('../model/useEntities')
 
 
-class UserRepository extends Curd{
+class UserRepository extends Crud{
  constructor(){
     const user= AppDataSource.getRepository(User);
     super(user)
